@@ -2,7 +2,13 @@
 
 atmosphere data for an altitude in meters (range 0 to 20,000)
 
-# properties
+# input
+
+```c
+double  altitude        // meters
+```
+
+# get back
 
 ```c
 double  temperature;    // celsius
@@ -15,7 +21,15 @@ double  speed_of_sound; // m/sec
 # methods
 
 ```c
-atmosphereAtAltitude(double altitude);
+// composite
+atmosphere atmosphereAtAltitude(double altitude);
+
+// individual
+double pressureAtAltitude(double altitude);
+double densityAtAltitude(double altitude);
+double temperatureAtAltitude(double altitude);
+double gravityAtAltitude(double altitude);
+double speedOfSoundAtAltitude(double altitude);
 ```
 
 # sources
