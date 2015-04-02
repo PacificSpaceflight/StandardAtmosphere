@@ -27,6 +27,7 @@ struct atmosphere{
     double  speed_of_sound; // m/sec
 };
 
+// altitude in meters
 atmosphere atmosphereAtAltitude(double altitude){
     struct atmosphere a;
     if(altitude < 0.0 || altitude > 20000.0) return a;   // calculations only valid between sea level and 20,000m
@@ -45,6 +46,7 @@ atmosphere atmosphereAtAltitude(double altitude){
     return a;
 }
 
+// altitude in meters
 double speedOfSoundAtAltitude(double altitude){
     if(altitude < 0.0 || altitude > 20000.0)
         return -1;
@@ -54,10 +56,12 @@ double speedOfSoundAtAltitude(double altitude){
         return 331 + ( 0.6 * -56.5 );
 }
 
+// altitude in meters
 double gravityAtAltitude(double altitude){
     return SEA_LEVEL_GRAVITY * pow( EARTH_RADIUS / (EARTH_RADIUS+altitude), 2);
 }
 
+// altitude in meters
 double temperatureAtAltitude(double altitude){
     if(altitude < 0.0 || altitude > 20000.0)
         return -1;
@@ -67,6 +71,7 @@ double temperatureAtAltitude(double altitude){
         return -56.5;
 }
 
+// altitude in meters
 double pressureAtAltitude(double altitude){
     if(altitude < 0.0 || altitude > 20000.0)
         return -1;
@@ -76,6 +81,7 @@ double pressureAtAltitude(double altitude){
         return 226.32 * pow(E, -(SEA_LEVEL_GRAVITY * pow( EARTH_RADIUS / (EARTH_RADIUS+altitude), 2))*(altitude-11000)/(REAL_GAS_CONSTANT*216.65)) * HPA_TO_PSI;
 }
 
+// altitude in meters
 double densityAtAltitude(double altitude){
     double temperature = SEA_LEVEL_TEMPERATURE;
     double pressure = SEA_LEVEL_PRESSURE;
