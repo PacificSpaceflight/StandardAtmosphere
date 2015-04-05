@@ -1,0 +1,131 @@
+<html>
+<head>
+	<!--[if lt IE 9]>
+    <script src="excanvas.js"></script>
+	<![endif]-->
+	<script src="jquery.min.js"></script>
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+	<style>
+		html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center, dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed, 
+		figure, figcaption, footer, header, hgroup, 
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure, 
+		footer, header, hgroup, menu, nav, section {
+			display: block;
+		}
+		body {
+			line-height: 1;
+			font-family: sans-serif;
+		}
+		ol, ul {
+			list-style: none;
+		}
+		blockquote, q {
+			quotes: none;
+		}
+		blockquote:before, blockquote:after,
+		q:before, q:after {
+			content: '';
+			content: none;
+		}
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+		h1{
+			font-size: 300%;
+		}
+		h2{
+			font-size: 200%;
+		}
+		h3{
+			font-size: 100%;
+		}
+		div{
+			display:inline-block;
+			text-align:center;
+			width:100%;
+		}
+		img{
+			display:inline-block;
+		}
+		#stats{
+			text-align: left;
+			color:white;
+			position: absolute;
+		}
+		#elevationText{
+			text-align: left;
+			color:white;
+			position: absolute;
+		}
+		#sky{
+			position: absolute;
+		}
+		/*canvas{border:1px solid red;}*/
+		body {
+		  background: -webkit-linear-gradient(black, #5d92d1); /* For Safari 5.1 to 6.0 */
+		  background: -o-linear-gradient(black, #5d92d1); /* For Opera 11.1 to 12.0 */
+		  background: -moz-linear-gradient(black, #5d92d1); /* For Firefox 3.6 to 15 */
+		  background: linear-gradient(black, #5d92d1); /* Standard syntax */
+		}
+	</style>
+
+	<title>international standard atmosphere</title>
+</head>
+<body>
+	<div id="elevationText"></div>
+	<div id="stats"></div>
+	<canvas id="sky" width="600" height="400"></canvas>
+</body>
+<script src="standardAtmosphere.js"></script>
+<script src="sky.js"></script>
+<script>
+// When document has finished loading
+$(document).ready(function() {
+    var resizeText = function () {
+		// $("h1").css("font-size", $(window).width() * .1 + 'px');
+		// $("h2").css("font-size", $(window).width() * .06 + 'px');
+		// $("h3").css("font-size", $(window).width() * .03 + 'px');
+		// $("p").css("font-size", $(window).width() * .02 + 'px');
+		// $(".separator").css("height", $(window).width() * .1 + 'px');
+		$("#stats").width($(window).width());
+		$("#stats").height($(window).height());
+		$("#sky").width($(window).width());
+		$("#sky").height($(window).height());
+		// $("#hexagonResult").width($(window).width() * .4);
+		// $("#secondaryBases").width($(window).width() * .6);
+		// $("#secondaryHexagonResult").width($(window).width() * .4);
+		// $("#validshapes").width($(window).width() * .75);
+		// $("#validshapes").height($(window).width() * .75 * .25);
+		// $("#eqtri").width($(window).width() * .33);
+		// $("#eqtri").height($(window).width() * .33);
+		// $(".left").height($(window).width() * .4);
+		// $(".right").height($(window).width() * .4);
+		// var iframe = document.getElementById('kickstarterVideo');
+		// iframe.style.width = $(window).width() * .66 + "px";  
+		// iframe.style.height = $(window).width() * .66*3/4 + "px";  
+    };
+    $(window).bind('resize', function() {
+        resizeText();
+    }).trigger('resize');
+});
+</script>
+</html>
