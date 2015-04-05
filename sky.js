@@ -6,9 +6,10 @@ var stats = document.getElementById("stats");
 
 var img = new Image();
 img.onload = function() {
+	console.log("drawing image");
     context.drawImage(img, 0, 0);
 }
-img.src = "http://upload.wikimedia.org/wikipedia/commons/d/d2/Svg_example_square.svg";
+img.src = "https://raw.githubusercontent.com/PacificSpaceflight/StandardAtmosphere/master/eiffel.png";
 
 
 function Point(){
