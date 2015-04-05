@@ -76,8 +76,12 @@
 			color:white;
 			position: absolute;
 		}
-		#sky{
+		#silhouette{
+			position:absolute;
+		}
+		#interface{
 			position: absolute;
+			z-index: 3;
 		}
 		/*canvas{border:1px solid red;}*/
 		body {
@@ -93,10 +97,11 @@
 <body>
 	<div id="elevationText"></div>
 	<div id="stats"></div>
-	<canvas id="sky" width="600" height="400"></canvas>
+	<canvas id="interface" width="600" height="400"></canvas>
+	<canvas id="silhouette" width="600" height="400"></canvas>
 </body>
 <script src="standardAtmosphere.js"></script>
-<script src="sky.js"></script>
+<script src="interface.js"></script>
 <script>
 // When document has finished loading
 $(document).ready(function() {
@@ -108,8 +113,10 @@ $(document).ready(function() {
 		// $(".separator").css("height", $(window).width() * .1 + 'px');
 		$("#stats").width($(window).width());
 		$("#stats").height($(window).height());
-		$("#sky").width($(window).width());
-		$("#sky").height($(window).height());
+		$("#interface").width($(window).width());
+		$("#interface").height($(window).height());
+		$("#silhouette").width($(window).width());
+		$("#silhouette").height($(window).height());
 		// $("#hexagonResult").width($(window).width() * .4);
 		// $("#secondaryBases").width($(window).width() * .6);
 		// $("#secondaryHexagonResult").width($(window).width() * .4);
