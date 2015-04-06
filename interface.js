@@ -13,20 +13,21 @@ eiffelImage.onload = function() {
     						 		 scaleHeight, scaleHeight);
 }
 
-// var planeImage = new Image();
-// planeImage.src = "https://raw.githubusercontent.com/PacificSpaceflight/StandardAtmosphere/master/airplane.png";
-// planeImage.onload = function() {
-// 	var scaleHeight = silhouetteCanvas.height * 280.0/20000.0;  // eiffel tower 324m tall
-// 	console.log(window.devicePixelRatio + " " + scaleHeight + " " + silhouetteCanvas.height);
-//     silhouetteContext.drawImage(img, 0, silhouetteCanvas.height/window.devicePixelRatio-scaleHeight, 
-//     						 		 scaleHeight, scaleHeight);
-// }
+var planeImage = new Image();
+planeImage.src = "https://raw.githubusercontent.com/PacificSpaceflight/StandardAtmosphere/master/airplane.png";
+planeImage.onload = function() {
+	var planeAltitude = silhouetteCanvas.height * 9144.0/20000.0;  // 30,000 ft
+    silhouetteContext.drawImage(img, silhouetteCanvas.width/window.devicePixelRatio * .4, 
+    								 silhouetteCanvas.height/window.devicePixelRatio-planeAltitude, 
+    						 		 silhouetteCanvas.width/window.devicePixelRatio * .1, silhouetteCanvas.width/window.devicePixelRatio * .1);
+}
+
 var everestImage = new Image();
 everestImage.src = "https://raw.githubusercontent.com/PacificSpaceflight/StandardAtmosphere/master/everest.png";
 everestImage.onload = function() {
 	var scaleHeight2 = silhouetteCanvas.height * 8848.0 / 20000.0 / window.devicePixelRatio;  // everest is 8,848m
     silhouetteContext.drawImage(everestImage, 0, silhouetteCanvas.height/window.devicePixelRatio - scaleHeight2, 
-    						 		 scaleHeight2 * 3, scaleHeight2);
+    						 		 silhouetteCanvas.width/window.devicePixelRatio, scaleHeight2);
 }
 
 
