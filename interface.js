@@ -16,10 +16,10 @@ eiffelImage.onload = function() {
 var planeImage = new Image();
 planeImage.src = "https://raw.githubusercontent.com/PacificSpaceflight/StandardAtmosphere/master/airplane.png";
 planeImage.onload = function() {
-	var planeAltitude = silhouetteCanvas.height * 9144.0/20000.0;  // 30,000 ft
-    silhouetteContext.drawImage(img, silhouetteCanvas.width/window.devicePixelRatio * .4, 
+	var planeAltitude = silhouetteCanvas.height * 9400.0/20000.0 / window.devicePixelRatio;  // 9144m = 30,000 ft
+    silhouetteContext.drawImage(planeImage, silhouetteCanvas.width/window.devicePixelRatio * .4, 
     								 silhouetteCanvas.height/window.devicePixelRatio-planeAltitude, 
-    						 		 silhouetteCanvas.width/window.devicePixelRatio * .1, silhouetteCanvas.width/window.devicePixelRatio * .1);
+    						 		 silhouetteCanvas.width/window.devicePixelRatio * .02, silhouetteCanvas.width/window.devicePixelRatio * .02);
 }
 
 var everestImage = new Image();
