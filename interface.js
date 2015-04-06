@@ -6,7 +6,7 @@ var silhouetteContext = silhouetteCanvas.getContext("2d");
 
 
 var eiffelImage = new Image();
-eiffelImage.src = "https://raw.githubusercontent.com/PacificSpaceflight/StandardAtmosphere/master/eiffel.png";
+eiffelImage.src = "eiffel.png";
 eiffelImage.onload = function() {
 	var scaleHeight = silhouetteCanvas.height * 324.0/20000.0 /window.devicePixelRatio;  // eiffel tower 324m tall
     silhouetteContext.drawImage(eiffelImage, 0, silhouetteCanvas.height/window.devicePixelRatio-scaleHeight, 
@@ -14,7 +14,7 @@ eiffelImage.onload = function() {
 }
 
 var planeImage = new Image();
-planeImage.src = "https://raw.githubusercontent.com/PacificSpaceflight/StandardAtmosphere/master/airplane.png";
+planeImage.src = "airplane.png";
 planeImage.onload = function() {
 	var planeAltitude = silhouetteCanvas.height * 9400.0/20000.0 / window.devicePixelRatio;  // 9144m = 30,000 ft
     silhouetteContext.drawImage(planeImage, silhouetteCanvas.width/window.devicePixelRatio * .4, 
@@ -23,7 +23,7 @@ planeImage.onload = function() {
 }
 
 var everestImage = new Image();
-everestImage.src = "https://raw.githubusercontent.com/PacificSpaceflight/StandardAtmosphere/master/everest.png";
+everestImage.src = "everest.png";
 everestImage.onload = function() {
 	var scaleHeight2 = silhouetteCanvas.height * 8848.0 / 20000.0 / window.devicePixelRatio;  // everest is 8,848m
     silhouetteContext.drawImage(everestImage, 0, silhouetteCanvas.height/window.devicePixelRatio - scaleHeight2, 
@@ -127,16 +127,26 @@ $("#interface").mousemove(function(event){
 	altitude *= scale;
 	var a = atmosphereAtAltitude(altitude);
 	var tempDiff = a.temperature-SEA_LEVEL_TEMPERATURE;
-	var pressDiff = a.pressure-SEA_LEVEL_PRESSURE;
-	document.getElementById("stats").innerHTML = "<h2>" + 
-			a.temperature.toFixed(2) + " &deg;C &Delta;" + tempDiff.toFixed(2) + "&deg;C</h2><h2>" + 
-			a.pressure.toFixed(2) + " psi &Delta;" + pressDiff.toFixed(2) + " psi</h2><h2>" +
-			a.density.toFixed(2) + " kg/m^3</h2>";
+	var pressDiff = a.pressure-SEA_LEVEL_PRESSURE*HPA_TO_PSI;
+	var densDiff = a.density - SEA_LEVEL_DENSITY;
+	document.getElementById("stats").innerHTML = "<table><tr><td>" + "<h3>" + 
+			a.temperature.toFixed(2) + " &deg;C</h3><h3>" + 
+			a.pressure.toFixed(2) + " psi </h3><h3>" +
+			a.density.toFixed(2) + " kg/m^3</h3>" + "</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td style='color:#C0C0C0';><h3>" + 
+			"&Delta; " + tempDiff.toFixed(2) + "&deg;C</h3><h3>" + 
+			"&Delta; " + pressDiff.toFixed(2) + " psi</h3><h3>" +
+			"&Delta; " + densDiff.toFixed(2) + " kg/m^3</h3><h3>" + 
+			"&Delta; from sea level</h3></td></tr></table>";
 	drawSkyLines( {x:event.offsetX / window.innerWidth, y:event.offsetY / window.innerHeight} );
 
-	document.getElementById("stats").style.left = canvas.width * .5 + "px"; 
+	var bump = 0;
+	if(event.offsetY / window.innerHeight > .75)
+		bump = -100;
 
-	document.getElementById('elevationText').style.left= canvas.width * .11 + "px";
-	document.getElementById('elevationText').style.top= event.offsetY + "px";
-	document.getElementById('elevationText').innerHTML = "<h3>" + altitude.toFixed(2) + " meters</h2>";
+	document.getElementById("stats").style.left = canvas.width * .05 + "px"; 
+	document.getElementById("stats").style.top = 20+event.offsetY + bump + "px"
+
+	document.getElementById('elevationText').style.left = canvas.width * .11 + "px";
+	document.getElementById('elevationText').style.top = event.offsetY -10 + "px";
+	document.getElementById('elevationText').innerHTML = "<h2>" + altitude.toFixed(2) + " meters</h2>";
 });
