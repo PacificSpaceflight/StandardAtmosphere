@@ -50,10 +50,10 @@
 			border-spacing: 0;
 		}
 		h1{
-			font-size: 300%;
+			font-size: 200%;
 		}
 		h2{
-			font-size: 200%;
+			font-size: 150%;
 		}
 		h3{
 			font-size: 100%;
@@ -61,27 +61,28 @@
 		div{
 			display:inline-block;
 			text-align:center;
-			width:100%;
+			color:white;
+			font-weight: lighter;
 		}
 		img{
 			display:inline-block;
 		}
-		#stats{
-			text-align: left;
-			color:white;
+		.float{
 			position: absolute;
 		}
-		#elevationText{
+		.floatRight{
+			position: absolute;
+			right:0;
+			text-align: right;
+			z-index: 10;
+		}
+		table tr td {
 			text-align: left;
 			color:white;
-			position: absolute;
 		}
+
 		#silhouette{
-			position:absolute;
 			z-index: -1;
-		}
-		#interface{
-			position: absolute;
 		}
 		/*canvas{border:1px solid red;}*/
 		body {
@@ -92,13 +93,14 @@
 		}
 	</style>
 
-	<title>international standard atmosphere</title>
+	<title>International Standard Atmosphere</title>
 </head>
 <body>
-	<div id="elevationText"></div>
-	<div id="stats"></div>
-	<canvas id="interface" width="600" height="400"></canvas>
-	<canvas id="silhouette" width="600" height="400"></canvas>
+	<div class="float" id="elevationText"></div>
+	<div class="float" id="stats"></div>
+	<div class="floatRight"><h1>International Standard Atmosphere</h1><a href="http://fisicaatmo.at.fcen.uba.ar/practicas/ISAweb.pdf" style="color:white">source</a></div>
+	<canvas class="float" id="interface" width="600" height="400"></canvas>
+	<canvas class="float" id="silhouette" width="600" height="400"></canvas>
 </body>
 <script src="standardAtmosphere.js"></script>
 <script src="interface.js"></script>
@@ -111,8 +113,8 @@ $(document).ready(function() {
 		// $("h3").css("font-size", $(window).width() * .03 + 'px');
 		// $("p").css("font-size", $(window).width() * .02 + 'px');
 		// $(".separator").css("height", $(window).width() * .1 + 'px');
-		$("#stats").width($(window).width());
-		$("#stats").height($(window).height());
+		// $("#stats").width($(window).width());
+		// $("#stats").height($(window).height());
 		$("#interface").width($(window).width());
 		$("#interface").height($(window).height());
 		$("#silhouette").width($(window).width());
