@@ -84,7 +84,9 @@ $("#interface").mousemove(function(event){
 	var tempDiff = a.temperature-SEA_LEVEL_TEMPERATURE;
 	var pressDiff = a.pressure-SEA_LEVEL_PRESSURE*HPA_TO_PSI;
 	var densDiff = a.density - SEA_LEVEL_DENSITY;
-	document.getElementById("stats").innerHTML = "<table><tr><td>" + "<h3>" + 
+	document.getElementById("stats").innerHTML = "<table><tr>" + 
+			"<td><h3>Temperature</h3><h3>Pressure</h3><h3>Density</h3></td>" + "<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>" +
+			"<td><h3>" + 
 			a.temperature.toFixed(2) + " &deg;C</h3><h3>" + 
 			a.pressure.toFixed(2) + " psi </h3><h3>" +
 			a.density.toFixed(2) + " kg/m^3</h3>" + "</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td style='color:#d0d0d0';><h3>" + 
@@ -95,7 +97,7 @@ $("#interface").mousemove(function(event){
 	drawMovingStats( {x:event.offsetX / window.innerWidth, y:event.offsetY / window.innerHeight} );
 
 	var bump = 0;
-	if(event.offsetY / window.innerHeight > .75)
+	if(event.offsetY / window.innerHeight > .85)
 		bump = -100;
 
 	document.getElementById("stats").style.left = canvas.width * .04 + "px"; 
@@ -103,5 +105,5 @@ $("#interface").mousemove(function(event){
 
 	document.getElementById('elevationText').style.left = canvas.width * .04 + "px";
 	document.getElementById('elevationText').style.top = event.offsetY -10 + "px";
-	document.getElementById('elevationText').innerHTML = "<h2>" + altitude.toFixed(2) + " meters</h2>";
+	document.getElementById('elevationText').innerHTML = "<h2>" + Math.floor(altitude) + " meters</h2>";
 });
