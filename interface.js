@@ -5,12 +5,12 @@ var silhouetteCanvas = document.getElementById("silhouette");
 var silhouetteContext = silhouetteCanvas.getContext("2d");
 
 
-var eiffelImage = new Image();
-eiffelImage.src = "eiffel.png";
-eiffelImage.onload = function() {
-	var scaleHeight = silhouetteCanvas.height * 324.0/20000.0 /window.devicePixelRatio;  // eiffel tower 324m tall
-    silhouetteContext.drawImage(eiffelImage, 0, silhouetteCanvas.height/window.devicePixelRatio-scaleHeight, 
-    						 		 scaleHeight, scaleHeight);
+var burjImage = new Image();
+burjImage.src = "burj_khalifa.png";
+burjImage.onload = function() {
+	var scaleHeight = silhouetteCanvas.height * 829.8/20000.0 /window.devicePixelRatio;  // burj khalifa in dubai 829.8m tall
+    silhouetteContext.drawImage(burjImage, 50, silhouetteCanvas.height/window.devicePixelRatio-scaleHeight, 
+    						 		 scaleHeight*.25, scaleHeight);
 }
 
 var planeImage = new Image();
