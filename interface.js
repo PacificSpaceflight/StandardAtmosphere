@@ -8,9 +8,8 @@ var silhouetteContext = silhouetteCanvas.getContext("2d");
 var eiffelImage = new Image();
 eiffelImage.src = "https://raw.githubusercontent.com/PacificSpaceflight/StandardAtmosphere/master/eiffel.png";
 eiffelImage.onload = function() {
-	var scaleHeight = silhouetteCanvas.height * 280.0/20000.0;  // eiffel tower 324m tall
-	console.log(window.devicePixelRatio + " " + scaleHeight + " " + silhouetteCanvas.height);
-    silhouetteContext.drawImage(img, 0, silhouetteCanvas.height/window.devicePixelRatio-scaleHeight, 
+	var scaleHeight = silhouetteCanvas.height * 324.0/20000.0 /window.devicePixelRatio;  // eiffel tower 324m tall
+    silhouetteContext.drawImage(eiffelImage, 0, silhouetteCanvas.height/window.devicePixelRatio-scaleHeight, 
     						 		 scaleHeight, scaleHeight);
 }
 
@@ -25,10 +24,9 @@ eiffelImage.onload = function() {
 var everestImage = new Image();
 everestImage.src = "https://raw.githubusercontent.com/PacificSpaceflight/StandardAtmosphere/master/everest.png";
 everestImage.onload = function() {
-	var scaleHeight = silhouetteCanvas.height * 8848.0 /20000.0;  // everest is 8,848m
-	console.log(window.devicePixelRatio + " " + scaleHeight + " " + silhouetteCanvas.height);
-    silhouetteContext.drawImage(img, silhouetteCanvas.width*.1, silhouetteCanvas.height/window.devicePixelRatio-scaleHeight, 
-    						 		 scaleHeight, scaleHeight);
+	var scaleHeight2 = silhouetteCanvas.height * 8848.0 / 20000.0 / window.devicePixelRatio;  // everest is 8,848m
+    silhouetteContext.drawImage(everestImage, 0, silhouetteCanvas.height/window.devicePixelRatio - scaleHeight2, 
+    						 		 scaleHeight2 * 3, scaleHeight2);
 }
 
 
@@ -56,14 +54,14 @@ if (window.devicePixelRatio > 1) {
     silhouetteContext.scale(window.devicePixelRatio, window.devicePixelRatio);
 }
 
-function drawScaleObjects(){
-	context.fillStyle = "#E0E0E0";
-	context.beginPath();
-	context.moveTo(o.x + p1.x*scale, o.y + p1.y*scale);
-	for(var i = 0; i < points.length; i++) context.lineTo(o.x + points[i].x*scale, o.y + points[i].y*scale);
-	context.lineTo(o.x + p1.x*scale, o.y + p1.y*scale);
-	context.fill();
-}
+// function drawScaleObjects(){
+// 	context.fillStyle = "#E0E0E0";
+// 	context.beginPath();
+// 	context.moveTo(o.x + p1.x*scale, o.y + p1.y*scale);
+// 	for(var i = 0; i < points.length; i++) context.lineTo(o.x + points[i].x*scale, o.y + points[i].y*scale);
+// 	context.lineTo(o.x + p1.x*scale, o.y + p1.y*scale);
+// 	context.fill();
+// }
 
 
 function drawSkyLines(mouse){
