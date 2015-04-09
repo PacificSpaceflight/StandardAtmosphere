@@ -58,6 +58,9 @@
 		h3{
 			font-size: 100%;
 		}
+		p{
+			/*font-size: 75%;*/
+		}
 		div{
 			display:inline-block;
 			text-align:center;
@@ -80,9 +83,14 @@
 			text-align: left;
 			color:white;
 		}
-
-		#silhouette{
+		#drawings{
 			z-index: -1;
+		}
+		#labels{
+			opacity: .5;
+		}
+		#silhouette{
+			z-index: -2;
 		}
 		/*canvas{border:1px solid red;}*/
 		body {
@@ -98,7 +106,9 @@
 <body>
 	<div class="float" id="elevationText"></div>
 	<div class="float" id="stats"></div>
-	<div class="floatRight"><p><a href="/about" style="color:white">about</a></p><p><a href="http://fisicaatmo.at.fcen.uba.ar/practicas/ISAweb.pdf" style="color:white">source</a></p></div>
+	<div class="float" id="label"><p></p></div>
+	<div class="floatRight"><p><a href="http://fisicaatmo.at.fcen.uba.ar/practicas/ISAweb.pdf" style="color:white">source</a></p></div>
+	<canvas class="float" id="drawings" width="600" height="400"></canvas>
 	<canvas class="float" id="interface" width="600" height="400"></canvas>
 	<canvas class="float" id="silhouette" width="600" height="400"></canvas>
 </body>
@@ -112,11 +122,25 @@ $(document).ready(function() {
 		$("#interface").height($(window).height());
 		$("#silhouette").width($(window).width());
 		$("#silhouette").height($(window).height());
+		$("#drawings").width($(window).width());
+		$("#drawings").height($(window).height());
+		document.getElementById("label").style.left = $(window).width() * .84 + "px"; 
+		document.getElementById("label").style.top = $(window).height() - $(window).height() * 11000.0 / 20000.0+ "px"
+	
+	var drawingCanvas = document.getElementById("drawings");
+	var drawingContext = drawingCanvas.getContext("2d");
 
+	drawingCanvas.width = drawingCanvas.width;
+	drawingContext.fillStyle = "rgba(0, 0, 0, 0.1)";
+	drawingContext.fillRect(0,0,drawingCanvas.width, drawingCanvas.height - drawingCanvas.height * 11000.0 / 20000.0 );
+
+	//window.devicePixelRatio    
+    
     };
     $(window).bind('resize', function() {
         resizeText();
     }).trigger('resize');
+
 });
 </script>
 </html>
