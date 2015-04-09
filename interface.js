@@ -4,13 +4,16 @@ var context = canvas.getContext("2d");
 var silhouetteCanvas = document.getElementById("silhouette");
 var silhouetteContext = silhouetteCanvas.getContext("2d");
 
+var drawingCanvas = document.getElementById("drawings");
+var drawingContext = drawingCanvas.getContext("2d");
 
-var eiffelImage = new Image();
-eiffelImage.src = "eiffel.png";
-eiffelImage.onload = function() {
-	var scaleHeight = silhouetteCanvas.height * 324.0/20000.0 /window.devicePixelRatio;  // eiffel tower 324m tall
-    silhouetteContext.drawImage(eiffelImage, 0, silhouetteCanvas.height/window.devicePixelRatio-scaleHeight, 
-    						 		 scaleHeight, scaleHeight);
+
+var burjImage = new Image();
+burjImage.src = "burj_khalifa.png";
+burjImage.onload = function() {
+	var scaleHeight = silhouetteCanvas.height * 829.8/20000.0 /window.devicePixelRatio;  // burj khalifa in dubai 829.8m tall
+    silhouetteContext.drawImage(burjImage, 50, silhouetteCanvas.height/window.devicePixelRatio-scaleHeight, 
+    						 		 scaleHeight*.25, scaleHeight);
 }
 
 var planeImage = new Image();
@@ -36,24 +39,39 @@ function Point(){
 	var y;
 }
 
-if (window.devicePixelRatio > 1) {
-    var canvasWidth = canvas.width;
-    var canvasHeight = canvas.height;
+function resetScale(){
+	if (window.devicePixelRatio > 1) {
+	    var canvasWidth = canvas.width;
+	    var canvasHeight = canvas.height;
 
-    canvas.width = canvasWidth * window.devicePixelRatio;
-    canvas.height = canvasHeight * window.devicePixelRatio;
-    canvas.style.width = canvasWidth;
-    canvas.style.height = canvasHeight;
+	// layer 1
+	    canvas.width = canvasWidth * window.devicePixelRatio;
+	    canvas.height = canvasHeight * window.devicePixelRatio;
+	    canvas.style.width = canvasWidth;
+	    canvas.style.height = canvasHeight;
 
-    context.scale(window.devicePixelRatio, window.devicePixelRatio);
+	    context.scale(window.devicePixelRatio, window.devicePixelRatio);
 
-    silhouetteCanvas.width = canvasWidth * window.devicePixelRatio;
-    silhouetteCanvas.height = canvasHeight * window.devicePixelRatio;
-    silhouetteCanvas.style.width = canvasWidth;
-    silhouetteCanvas.style.height = canvasHeight;
+	// layer 2
+	    silhouetteCanvas.width = canvasWidth * window.devicePixelRatio;
+	    silhouetteCanvas.height = canvasHeight * window.devicePixelRatio;
+	    silhouetteCanvas.style.width = canvasWidth;
+	    silhouetteCanvas.style.height = canvasHeight;
 
-    silhouetteContext.scale(window.devicePixelRatio, window.devicePixelRatio);
+	    silhouetteContext.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+	// layer 3
+	    drawingCanvas.width = canvasWidth * window.devicePixelRatio;
+	    drawingCanvas.height = canvasHeight * window.devicePixelRatio;
+	    drawingCanvas.style.width = canvasWidth;
+	    drawingCanvas.style.height = canvasHeight;
+
+	    drawingContext.scale(window.devicePixelRatio, window.devicePixelRatio);
+	}
 }
+
+resetScale();
+
 
 // function drawScaleObjects(){
 // 	context.fillStyle = "#E0E0E0";
@@ -67,6 +85,7 @@ if (window.devicePixelRatio > 1) {
 
 function drawMovingStats(mouse){
 	canvas.width = canvas.width;
+
 	context.lineWidth = 1;
 	context.lineCap = "round";
 	context.strokeStyle = "#FFFFFF";
@@ -106,4 +125,30 @@ $("#interface").mousemove(function(event){
 	document.getElementById('elevationText').style.left = canvas.width * .04 + "px";
 	document.getElementById('elevationText').style.top = event.offsetY -10 + "px";
 	document.getElementById('elevationText').innerHTML = "<h2>" + Math.floor(altitude) + " meters</h2>";
+
+	var string = "";
+	if(altitude < 800) string = "Burj Khalifa";
+	else if(altitude < 1400) string = "";
+	else if(altitude < 1600) string = "Denver, Colorado";
+	else if(altitude < 2200) string = "";
+	else if(altitude < 2620) string = "Bogota, Columbia";
+	else if(altitude < 3200) string = "";
+	else if(altitude < 3631) string = "La Paz, Bolivia";
+	else if(altitude < 4100) string = "WW1 airplanes";
+	else if(altitude < 4421) string = "Mount Whitney (California)";
+	else if(altitude < 5600) string = "";
+	else if(altitude < 5959) string = "Mount Logan (Canada)";
+	else if(altitude < 6890) string = "Ojos del Salado (highest volcano)";
+	else if(altitude < 8000) string = "cirrus clouds";
+	else if(altitude < 8400) string = "death zone (oxygen level)";
+	else if(altitude < 8848) string = "Mt. Everest";
+	else if(altitude < 11000) string = "commercial flights";
+	else if(altitude < 11300) string = "highest bird (Ruppell's vulture)"; 
+	else if(altitude < 12000) string = "tropopause";
+	else if(altitude < 14325) string = "WW2 airplanes";
+	else if(altitude < 20000) string = "stratosphere";
+	document.getElementById('label').style.left = canvas.width * .2 + "px";
+	document.getElementById('label').style.top = event.offsetY -10 + "px";
+	document.getElementById('label').innerHTML = "<h2 style='color:rgba(255,255,255,.5);'>" + string + "</h2>";
+
 });
