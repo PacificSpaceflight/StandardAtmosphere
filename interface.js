@@ -127,7 +127,8 @@ $("#interface").mousemove(function(event){
 	document.getElementById('elevationText').innerHTML = "<h2>" + Math.floor(altitude) + " meters</h2>";
 
 	var string = "";
-	if(altitude < 800) string = "Burj Khalifa";
+	if(altitude < 400) string = "";
+	if(altitude < 900) string = "Burj Khalifa";
 	else if(altitude < 1400) string = "";
 	else if(altitude < 1600) string = "Denver, Colorado";
 	else if(altitude < 2200) string = "";
@@ -142,8 +143,8 @@ $("#interface").mousemove(function(event){
 	else if(altitude < 8000) string = "cirrus clouds";
 	else if(altitude < 8400) string = "death zone (oxygen level)";
 	else if(altitude < 8848) string = "Mt. Everest";
-	else if(altitude < 11000) string = "commercial flights";
-	else if(altitude < 11300) string = "highest bird (Ruppell's vulture)"; 
+	else if(altitude < 10800) string = "commercial flights";
+	else if(altitude < 11000) string = "highest bird (Ruppell's vulture)"; 
 	else if(altitude < 12000) string = "tropopause";
 	else if(altitude < 14325) string = "WW2 airplanes";
 	else if(altitude < 20000) string = "stratosphere";
